@@ -1,0 +1,678 @@
+/* CoolBreeze Air Services — style.css */
+/* Custom styles that supplement Tailwind CDN */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
+
+/* ─── Design Tokens ─────────────────────────────────── */
+:root {
+  --color-primary:    #0F172A;
+  --color-secondary:  #334155;
+  --color-accent:     #0369A1;
+  --color-bg:         #F8FAFC;
+  --color-fg:         #020617;
+  --color-muted-bg:   #E8ECF1;
+  --color-muted-text: #64748B;
+  --color-border:     #E2E8F0;
+  --color-card:       #FFFFFF;
+  --font-heading:     'EB Garamond', Georgia, serif;
+  --font-body:        'Lato', system-ui, sans-serif;
+}
+
+/* ─── Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* ─── Nav ────────────────────────────────────────────── */
+.nav-link {
+  color: var(--color-secondary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  position: relative;
+  transition: color 150ms ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 200ms ease;
+}
+
+.nav-link:hover { color: var(--color-accent); }
+.nav-link:hover::after { width: 100%; }
+
+.nav-link.active {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.nav-link.active::after { width: 100%; }
+
+/* ─── Sticky Nav ─────────────────────────────────────── */
+#main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-card);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* ─── Hero ───────────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.35);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── Buttons ────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 200ms ease, transform 150ms ease;
+}
+
+.btn-primary:hover {
+  background-color: #0284C7;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 6px;
+  border: 2px solid rgba(255,255,255,0.6);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.btn-secondary:hover {
+  border-color: #fff;
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* ─── Cards ──────────────────────────────────────────── */
+.service-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+  cursor: default;
+}
+
+.service-card:hover {
+  box-shadow: 0 8px 24px rgba(15,23,42,0.10);
+  transform: translateY(-3px);
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+/* ─── Stats Bar ──────────────────────────────────────── */
+.stats-bar {
+  background-color: var(--color-primary);
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: 0.35rem;
+}
+
+/* ─── Testimonials ───────────────────────────────────── */
+.testimonial-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.75rem;
+}
+
+.star { color: #F59E0B; }
+
+/* ─── Badges / Certifications ────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--color-muted-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  transition: background-color 200ms ease, border-color 200ms ease;
+  cursor: default;
+}
+
+.badge:hover {
+  background-color: #D1E9F6;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ─── Coverage Pills ─────────────────────────────────── */
+.coverage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-secondary);
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  cursor: default;
+}
+
+.coverage-pill:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+/* ─── Gallery ────────────────────────────────────────── */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 300ms ease;
+}
+
+.gallery-item:hover img { transform: scale(1.04); }
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15,23,42,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 250ms ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  background: rgba(15,23,42,0.45);
+}
+
+.gallery-overlay-icon {
+  color: #fff;
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.gallery-item:hover .gallery-overlay-icon { opacity: 1; }
+
+/* ─── Lightbox ───────────────────────────────────────── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.92);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#lightbox.open { display: flex; }
+
+#lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  color: #fff;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 200ms ease;
+}
+
+#lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+/* ─── Floating WhatsApp ──────────────────────────────── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  cursor: pointer;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(37,211,102,0.55);
+}
+
+/* ─── Mobile Menu ────────────────────────────────────── */
+#mobile-menu {
+  display: none;
+  background-color: var(--color-card);
+  border-top: 1px solid var(--color-border);
+  padding: 1rem 1.5rem;
+}
+
+#mobile-menu.open { display: block; }
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.65rem 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: color 150ms ease;
+}
+
+.mobile-nav-link:last-child { border-bottom: none; }
+.mobile-nav-link:hover { color: var(--color-accent); }
+.mobile-nav-link.active { color: var(--color-accent); font-weight: 700; }
+
+/* ─── CTA Banner ─────────────────────────────────────── */
+.cta-banner {
+  background-color: var(--color-accent);
+}
+
+/* ─── Contact Form ───────────────────────────────────── */
+.form-input {
+  width: 100%;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.65rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-fg);
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.form-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(3,105,161,0.12);
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 0.35rem;
+}
+
+/* ─── Fade-in animation ──────────────────────────────── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Footer ─────────────────────────────────────────── */
+footer {
+  background-color: var(--color-primary);
+  color: rgba(255,255,255,0.7);
+}
+
+footer a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+footer a:hover { color: #fff; }
+
+/* ─── Section Headings ───────────────────────────────── */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+.section-heading.light { color: #fff; }
+
+.section-subheading {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-muted-text);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+/* ─── Divider ────────────────────────────────────────── */
+.accent-divider {
+  width: 48px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin-bottom: 1.25rem;
+  border-radius: 2px;
+}
+
+/* ─── Team Card ──────────────────────────────────────── */
+.team-card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  text-align: center;
+  transition: box-shadow 200ms ease;
+}
+
+.team-card:hover {
+  box-shadow: 0 6px 20px rgba(15,23,42,0.09);
+}
+
+.team-avatar {
+  width: 72px;
+  height: 72px;
+  background-color: var(--color-muted-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  color: var(--color-accent);
+}
+
+/* ─── Map placeholder ────────────────────────────────── */
+.map-container {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+/* ─── Success / Error states ─────────────────────────── */
+.form-success {
+  background-color: #DCFCE7;
+  border: 1px solid #86EFAC;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  color: #166534;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  display: none;
+}
+
+.form-error {
+  background-color: #FEE2E2;
+  border: 1px solid #FCA5A5;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  color: #991B1B;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  display: none;
+}
+
+/* ─── Responsive helpers ─────────────────────────────── */
+
+/* ── Mobile — up to 767px ───────────────────────────── */
+@media (max-width: 767px) {
+
+  /* Hero */
+  .hero-section { min-height: 420px; }
+  .hero-content { padding-top: 3rem; padding-bottom: 3rem; }
+
+  /* Hero CTA buttons — stack vertically, full width */
+  .hero-content .flex.flex-wrap { flex-direction: column; }
+  .hero-content .btn-primary,
+  .hero-content .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 0.95rem;
+  }
+
+  /* Stats numbers */
+  .stat-number { font-size: 2rem; }
+
+  /* Section padding — reduce vertical on mobile */
+  section.py-16 { padding-top: 3rem; padding-bottom: 3rem; }
+  section.py-14 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+
+  /* Section headings cap */
+  .section-heading { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+  /* Section subheading — prevent overflow */
+  .section-subheading {
+    max-width: 100%;
+    font-size: 0.95rem;
+  }
+
+  /* Page headers (dark banner on inner pages) */
+  section[aria-label="Page header"] {
+    padding: 2.5rem 1.25rem;
+  }
+
+  /* All buttons — minimum touch target */
+  .btn-primary,
+  .btn-secondary {
+    min-height: 44px;
+  }
+
+  /* Mobile nav links — minimum touch target */
+  .mobile-nav-link {
+    padding: 0.75rem 0;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Mobile menu CTA button */
+  #mobile-menu .btn-primary {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 0.75rem;
+  }
+
+  /* Service cards on services.html — stack icon above content */
+  .service-card > div[style*="display:flex"][style*="gap:1.5rem"] {
+    flex-direction: column;
+  }
+
+  /* Images — prevent overflow */
+  img { max-width: 100%; }
+
+  /* About page — team photo */
+  img[style*="height:380px"] {
+    height: 240px;
+  }
+
+  /* Map containers — responsive height on mobile */
+  .map-container { height: 260px; }
+  .map-container[style*="height:420px"] { height: 260px; }
+  .map-container[style*="height:380px"] { height: 260px; }
+
+  /* Coverage page map — inline height override needed */
+  [style*="height:420px"] { height: 260px !important; }
+
+  /* CTA banner — ensure text is readable */
+  .cta-banner .flex.flex-col.md\:flex-row { gap: 1.5rem; }
+
+  /* Footer links — comfortable touch targets */
+  footer a {
+    display: inline-block;
+    min-height: 36px;
+    line-height: 2;
+  }
+
+  /* Contact form — full width inputs on mobile already set,
+     but ensure the submit button is full-width and tall */
+  #contact-form button[type="submit"] {
+    min-height: 52px;
+    font-size: 1rem;
+  }
+
+  /* Form inputs — comfortable height */
+  .form-input {
+    min-height: 48px;
+    font-size: 1rem; /* prevent iOS auto-zoom */
+  }
+
+  textarea.form-input { min-height: 120px; }
+
+  /* Lightbox close button — bigger touch target on mobile */
+  #lightbox-close {
+    width: 44px;
+    height: 44px;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  /* Floating WhatsApp — ensure it stays accessible */
+  .whatsapp-float {
+    bottom: 1rem;
+    right: 1rem;
+    width: 52px;
+    height: 52px;
+  }
+
+  /* Services page — response time cards */
+  .grid.grid-cols-1.sm\:grid-cols-3 { grid-template-columns: 1fr; }
+}
+
+/* ── Tablet — 768px to 1023px ───────────────────────── */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* Hero — comfortable on tablet */
+  .hero-section { min-height: 500px; }
+
+  /* Stats bar — keep 2-col on tablet, 4-col kicks in at md (768px) via Tailwind */
+
+  /* Section headings */
+  .section-heading { font-size: clamp(1.75rem, 3.5vw, 2.25rem); }
+
+  /* Gallery grid — Tailwind sm:grid-cols-2 handles this */
+
+  /* Map containers */
+  .map-container { height: 340px; }
+
+  /* About team photo */
+  img[style*="height:380px"] {
+    height: 320px;
+  }
+
+  /* Form inputs */
+  .form-input { font-size: 0.9rem; }
+}
